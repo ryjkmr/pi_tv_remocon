@@ -1,0 +1,67 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: 40px;
+  background-color: lightgray;
+}
+
+.button-row {
+  margin-bottom: 10px;
+}
+
+form {
+  display: inline-block;
+  margin: 5px;
+}
+
+button {
+  font-size: 20px;
+  padding: 10px 20px;
+  width: 120px;
+  height: 60px;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#programs {
+  margin-top: 40px;
+  text-align: left;
+  padding: 10px;
+  border-top: 2px solid #ccc;
+}
+
+.program-item {
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background: #f8f8f8;
+}
+
+.program-title {
+  font-weight: bold;
+}
+
+.program-title.next {
+    margin-top: 1em;
+}
+
+
+.program-subtitle {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  color: #333;
+}
+
+.program-subtitle.expanded {
+  white-space: normal;
+}
+
+.program-channel {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}

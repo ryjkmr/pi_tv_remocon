@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>テレビリモコン</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <h1>テレビリモコン</h1>
+  <div id="buttons">
+    {% for item in buttons %}
+    {% if item is none %}
+    <div class="button-row"></div>
+    {% else %}
+    {% set label = item[0] %}
+    {% set key = item[1] %}
+    {% set color = item[2] if item|length > 2 else default_color %}
+    <button type="button" class="control-button" data-key="{{ key }}" style="background-color: {{ color }}">
+      {{ label }}
+    </button>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+
+  <div id="programs">
+    <h2>現在放送中の番組</h2>
+    <div id="program-list"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
