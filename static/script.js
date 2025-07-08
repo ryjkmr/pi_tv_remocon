@@ -1,4 +1,14 @@
 function fetchPrograms() {
+  // 時刻表示更新
+  const now = new Date();
+  const h = now.getHours().toString().padStart(2, '0');
+  const m = now.getMinutes().toString().padStart(2, '0');
+  const heading = document.querySelector("#programs h2");
+  if (heading) {
+    heading.textContent = `${h}時${m}分現在放送中の番組`;
+  }
+
+  // 番組情報の取得・描画
   fetch("/programs")
     .then(res => res.json())
     .then(data => {
@@ -55,22 +65,40 @@ function fetchPrograms() {
 
 // リモコン操作ボタン送信用（POST送信をfetchで）
 function setupControlButtons() {
-    const buttons = document.querySelectorAll(".control-button");
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const key = btn.dataset.key;
-            fetch("/send", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: `key=${encodeURIComponent(key)}`
-            });
-        });
+  const buttons = document.querySelectorAll(".control-button");
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.key;
+      fetch("/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `key=${encodeURIComponent(key)}`
+      });
     });
+  });
 }
+
+function updateClock() {
+    const now = new Date();
+    const h = now.getHours().toString().padStart(2, '0');
+    const m = now.getMinutes().toString().padStart(2, '0');
+    const s = now.getSeconds().toString().padStart(2, '0');
+
+    const clock = document.getElementById("clock");
+    if (clock) {
+        clock.textContent = `${h}時${m}分${s}秒`;
+    }
+}
+
+// 毎秒更新
+setInterval(updateClock, 1000);
+updateClock(); // 初回実行
 
 
 fetchPrograms();
 setupControlButtons();
 setInterval(fetchPrograms, 20 * 60 * 1000); // 20分ごとに更新
+
+
