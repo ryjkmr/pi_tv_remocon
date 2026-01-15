@@ -1,7 +1,3 @@
-# 起動
-# nohup python3 app.py &
-# http://ipアドレス:8080 でアクセス
-
 from flask import Flask, render_template, request, redirect, jsonify
 import subprocess
 import requests
@@ -10,6 +6,7 @@ import pytz
 
 app = Flask(__name__)
 
+#（中略：REMOTE_NAME, BUTTONS, DEFAULT_COLOR はこれまで通り）
 DEFAULT_COLOR = "#555555"  # 色未指定のときのデフォルト色
 REMOTE_NAME = "regza_z8000"
 
@@ -43,7 +40,7 @@ BUTTONS = [
 ]
 
 
-API_KEY = 'NHK番組表APIのKEY'
+API_KEY = 'NHK番組APIのキー'
 AREA = '130'
 CHANNELS = {
     '総合': 'g1',
